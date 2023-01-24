@@ -1,0 +1,21 @@
+services:
+  php:
+    container_name: php_8
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - 3000:80
+    links:
+      - mysql
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    volumes:
+      - ./Database:/docker-entrypoint-initdb.d
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${ROOT_PASSWD}
