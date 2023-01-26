@@ -1,13 +1,13 @@
 <?php
     class Database {
-        private static $server = "mysql";
+        private static $server = "mysql"; // container name
         private static $db     = "Tor_IPsDB";
         private static $user   = "App_User";
         private static $passwd = "V&4Dp5C1TW78J";
         private $connection;
 
         public function execute ($query, $values = []) {
-            try {
+            try { // executes all database operations except SELECT
                 $stmt = $this->getConnection()->prepare($query);
                 $stmt->execute($values);
 
