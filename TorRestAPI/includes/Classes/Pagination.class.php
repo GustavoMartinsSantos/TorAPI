@@ -18,19 +18,27 @@
             $currentPage = $currentPage > $this->numPages ? $this->numPages : $currentPage;
             // if current page exceeds the number of pages returns the last page
 
+            // skip a number of offset values and gets a total of limit values
             return array_slice($results, $this->getOffset($currentPage), $this->limit);
         }
 
-        // returns < 1 2 3 ... 298 >
+        // returns first 1 2 3 last
         public function getButtonsSection ($currentPage = 1, $numButtonsPerSection = 3, $buttonColor = '#212529', $textColor = "white", $currentPageButtonColor = '#40F128') {
             if($this->numPages == 1)
                 return null;
 
+            // getting url parameters to be used by page links
+            $url = $_SERVER['REQUEST_URI'];
+            if(count($_GET))
+                $url .= '&';
+            else
+                $url .= '?';
+
             // first link
-            $section = "<nav>
+            $section = "<nav style='float: left;'>
                           <ul class='pagination'>
                             <li class='page-item'> 
-                              <a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' href='?page=1' aria-label='Primeira'>
+                              <a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' href='{$url}page=1' aria-label='Primeira'>
                                 <span class='sr-only'>Primeira</span>
                               </a>
                             </li>";
@@ -40,21 +48,27 @@
 
             // get all previous links
             for($previousPage = $currentPage - $numButtonsPerSection; $previousPage <= $currentPage - 1; $previousPage++) {                
-                if($previousPage >= 1)
-                    $section .= "<li class='page-item'><a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' href='?page={$previousPage}'>{$previousPage}</a></li>";
+                if($previousPage >= 1) {
+                    $section .= "<li class='page-item'><a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' "
+                    ."href='{$url}page={$previousPage}'>{$previousPage}</a></li>";
+                }
             }
 
-            $section .= "<li class='page-item'><a class='page-link' style='background-color: {$currentPageButtonColor}; color: rgb(0,0,0);' href='?page={$currentPage}'>{$currentPage}</a></li>";
+            // get current link
+            $section .= "<li class='page-item'><a class='page-link' style='background-color: {$currentPageButtonColor}; color: rgb(0,0,0);' "
+            ."href='{$url}page={$currentPage}'>{$currentPage}</a></li>";
 
             // get all next links
             for($nextPage = $currentPage + 1; $nextPage <= $currentPage + $numButtonsPerSection; $nextPage++) {
-                if($nextPage <= $this->numPages)
-                    $section .= "<li class='page-item'><a class='page-link' style='background-color: {$buttonColor}; color: $textColor;'href='?page={$nextPage}'>{$nextPage}</a></li>";
+                if($nextPage <= $this->numPages) {
+                    $section .= "<li class='page-item'><a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' "
+                    ."href='{$url}page={$nextPage}'>{$nextPage}</a></li>";
+                }
             }
 
             // last page link
             $section .= "<li class='page-item'>
-                            <a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' href='?page={$this->numPages}' aria-label='Última'>
+                            <a class='page-link' style='background-color: {$buttonColor}; color: $textColor;' href='{$url}page={$this->numPages}' aria-label='Última'>
                                 <span class='sr-only'>Última</span>
                             </a>
                         </li>
