@@ -25,6 +25,7 @@
                 file_put_contents("{$fileRoute}includes/danMeIPs.json", $overwriteJSON);
             }
             
+            // always gets the IPs from JSON file
             $danMeIPs = json_decode(file_get_contents("{$fileRoute}includes/danMeIPs.json"));
 
             return $danMeIPs;
