@@ -12,7 +12,7 @@
             }
         }
 
-        public static function getDanMeIPs ($fileRoute = null) {
+        public static function getDanMeIPs ($jsonFileRoute = null) {
             $API = new API("https://www.dan.me.uk/torlist/");
 
             $danMeIPs = explode("\n", $API->request());
@@ -22,11 +22,11 @@
                 '"'.implode('",'."\n".'"', $danMeIPs).'"'."\n] }";
                 // "104.53.221.159",\n
 
-                file_put_contents("{$fileRoute}includes/danMeIPs.json", $overwriteJSON);
+                file_put_contents("{$jsonFileRoute}includes/danMeIPs.json", $overwriteJSON);
             }
             
             // always gets the IPs from JSON file
-            $danMeIPs = json_decode(file_get_contents("{$fileRoute}includes/danMeIPs.json"));
+            $danMeIPs = json_decode(file_get_contents("{$jsonFileRoute}includes/danMeIPs.json"));
 
             return $danMeIPs;
         }
