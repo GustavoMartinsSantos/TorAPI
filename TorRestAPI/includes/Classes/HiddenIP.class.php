@@ -60,7 +60,7 @@
         public function INSERT ($db) {
             $query = "INSERT INTO " . self::$table . " (Address) VALUES (?)";
 
-            $db->execute($query, [$this->Address]);
+            return $db->execute($query, [$this->Address]);
         }
 
         // if WHERE is not passed, it's set as null
