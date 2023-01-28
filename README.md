@@ -5,12 +5,12 @@ Além disso, foi inserida uma funcionalidade de “desocultar IP” como funçã
 
 ## Endpoints:
 <ul>
-    <li><h3 style="display: inline">RestAPI/index.php</h3> – 
-    quando é feita a requisição via GET, o servidor nos retorna uma página HTML com uma lista dos IPs buscados em “onionoo.torproject.or” e de um arquivo JSON (danMeIPs.json) armazenado no servidor. Já ao enviarmos um endereço IP via GET, a API faz uma filtragem procurando os valores que correspondam ao passado pela url.
-    <li><h3 style="display: inline">RestAPI/ips-desocultos/</h3> – ao acessarmos este endereço via GET, obtemos uma página HTML com os IPs não ocultos, isto é, os que não se encontram no banco de dados.
-    <li><h3 style="display: inline">RestAPI/ocultar-ip/</h3> – enviado o IP via POST, o back-end valida se o dado é um IPv4 ou IPv6, se ele já está presente na base de dados e, por fim, se ele é encontrado nas fontes externas. Se houver algum erro na validação, é retornada uma mensagem de erro o informando, caso contrário, o IP é inserido no banco e uma mensagem de sucesso é criada. Logo após, o usuário é redirecionado à página de “IPs desocultos” com a mensagem respectiva.
-    <li><h3 style="display: inline">RestAPI/ips-desocultos/desocultarIP.php</h3> - neste endpoint, o IP recebido via POST é validado (se está presente no banco de dados e se é um IPv4 ou IPv6), deletado da base de dados e o usuário é redirecionado a “ips-desocultos”.
-    <li><h3 style="display: inline">RestAPI/ips-ocultos/</h3> - já aqui o usuário acessa via GET, obtendo todos os IPs ocultados por ele.
+    <li><h3>RestAPI/index.php</h3>
+    quando é feita a requisição via GET, o servidor nos retorna uma página HTML com uma lista dos IPs buscados em “onionoo.torproject.or” e de um arquivo JSON (danMeIPs.json) armazenado no servidor. Já ao enviarmos um endereço IP via GET, a API faz uma filtragem procurando os valores que correspondam ao passado pela url.</li>
+    <li><h3>RestAPI/ips-desocultos/</h3> ao acessarmos este endereço via GET, obtemos uma página HTML com os IPs não ocultos, isto é, os que não se encontram no banco de dados.
+    <li><h3>RestAPI/ocultar-ip/</h3> enviado o IP via POST, o back-end valida se o dado é um IPv4 ou IPv6, se ele já está presente na base de dados e, por fim, se ele é encontrado nas fontes externas. Se houver algum erro na validação, é retornada uma mensagem de erro o informando, caso contrário, o IP é inserido no banco e uma mensagem de sucesso é criada. Logo após, o usuário é redirecionado à página de “IPs desocultos” com a mensagem respectiva.
+    <li><h3>RestAPI/ips-desocultos/desocultarIP.php</h3> neste endpoint, o IP recebido via POST é validado (se está presente no banco de dados e se é um IPv4 ou IPv6), deletado da base de dados e o usuário é redirecionado a “ips-desocultos”.
+    <li><h3>RestAPI/ips-ocultos/</h3> já aqui o usuário acessa via GET, obtendo todos os IPs ocultados por ele.
 </ul><br>
 
 ## Tecnologias utilizadas
