@@ -30,6 +30,11 @@ Além disso, foi inserida uma funcionalidade de “desocultar IP” como funçã
 <h3><li>Inicialização dos containers</h3>
 
     docker-compose up
+<h3><li>Acessando a base de dados</h3>
+
+    docker exec -it mysql /bin/sh
+    
+    mysql -u root -p
 </ol>
 
 Feito isso, ao acessarmos o servidor apache em um navegador, uma tela do tipo abaixo será vista por você
